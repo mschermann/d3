@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <style type="text/css">
+        #header {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #board{
+            margin-top:30px;
+            padding-top:5px;
+            padding-left:5px;
+            width: 300px;
+            height: 360px;
+            border: grey 1px dashed;
+        }
+        #quota {
+            stroke:black;
+            stroke-width:1px;
+        }
+        #min {
+            stroke-dasharray: 0;
+        }
+        #bonus {
+            stroke-dasharray: 4;
+        }
+        .red {
+            fill: red;
+        }
+        .blue {
+            fill: lightblue;
+        }
+        #bars{
+            stroke: #FFFFFF;
+        }
+
+        .bar{
+            stroke: black;
+            fill: green;
+        }
+
+        .selected {
+            fill: orange;
+            opacity: .5;
+            stroke: black;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var data = [
+                    {week : 'Week 1', messages: 123},
+                    {week : 'Week 2', messages: 322},
+                    {week : 'Week 3', messages: 510},
+                    {week : 'Week 4', messages: 485},
+                    {week : 'Week 5', messages: 473},
+                    {week : 'Week 6', messages: 466},
+                    {week : 'Week 7', messages: 507},
+                    ];
+
+
+            var x = d3.scaleBand()
+              .range([0, 295])
+              .padding(0.1);
+
+            x.domain(data.map(function(d) { return d.week; }));
+
+            var y = d3.scaleLinear()
+              .range([355, 0]);
+
+            y.domain([0, d3.max(data, function(d) {return d.messages; })]);
+
+            d3.select("#board")
+                .append("g")
+                .attr("id", "bars")
+                .selectAll(".bar")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("width", 30)
+                .attr("x", function(d) {return x(d.week)})
+                .attr("y", function(d) {return y(d.messages)})
+                .attr("height", function(d) { return 350 - y(d.messages)});
+        });
+
+    </script>
+</head>
+<body>
+    <div>
+        <p id="header">Hello world!</p>
+    </div>
+    <svg id="board">
+        <g id="quota">
+            <line id="bonus" x1="0" y1="240" x2="300" y2="240" />
+            <line id="min" x1="0" y1="290" x2="300" y2="290" />
+        </g>
+    </svg>
+</body>
+</html>

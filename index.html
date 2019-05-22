@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+    <style type="text/css">
+        #header {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .board{
+            margin-top:30px;
+            padding-top:5px;
+            padding-left:5px;
+            width: 300px;
+            height: 360px;
+            border: grey 1px dashed;
+        }
+        #quota {
+            stroke:black;
+            stroke-width:1px;
+        }
+        #min {
+            stroke-dasharray: 0;
+        }
+        #bonus {
+            stroke-dasharray: 4;
+        }
+        .red {
+            fill: red;
+        }
+        .blue {
+            fill: lightblue;
+        }
+        #bars{
+            stroke: #FFFFFF;
+        }
+
+        .bar{
+            stroke: black;
+            fill: green;
+        }
+
+        .selected {
+            fill: orange;
+            opacity: .5;
+            stroke: black;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p id="header">Hello world!</p>
+    </div>
+    <svg class="board">
+        <g id="bars">
+            <rect id="b1" x="10" y="250" width="30" height="100" class="bar" />
+            <rect id="b2" x="50" y="205" width="30" height="145" class="bar"  />
+            <rect id="b3" x="90" y="5" width="30" height="345" class="bar" />
+            <rect id="b4" x="130" y="194" width="30" height="156" class="bar"  />
+            <rect id="b5" x="170" y="127" width="30" height="223" class="bar" />
+            <rect id="b6" x="210" y="300" width="30" height="50" class="bar" />
+            <rect id="b7" x="250" y="327" width="30" height="23"class="bar"  />
+        </g>
+        <g id="quota">
+            <line id="bonus" x1="0" y1="240" x2="300" y2="240" />
+            <line id="min" x1="0" y1="290" x2="300" y2="290" />
+        </g>
+    </svg>
+</body>
+</html>
